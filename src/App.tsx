@@ -1,21 +1,45 @@
-import { Button } from "@/components/ui/button"
+import { RichButton } from "./components/rich-button"
+import { WordsStagger } from "./components/words-stagger"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
+import IconPaperPlane from "./components/icon-paper-plane"
+import { BlurReveal } from "./components/blur-reveal"
 
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+    <div className="grid min-h-svh min-w-screen grid-cols-2">
+      <div className="flex h-full w-full items-center justify-center  p-8 text-sm leading-loose">
+        <div className="text-muted-foreground">
+          <p>
+            <BlurReveal className="font-medium">Joaquin Batista</BlurReveal>
+          </p>
+
+          <p>
+            <BlurReveal>
+              I'm an AI
+            </BlurReveal>
+          </p>
+
+          <span>            <BlurReveal>
+            engineer            </BlurReveal>
+          </span>
+          engineer with data science background. Currently studying in UCU.
+          <BlurReveal>
+            We've already added the button component for you.
+          </BlurReveal>
+          <RichButton className="mt-2" color="default">
+            <IconPaperPlane size="24px" />
+            Button
+          </RichButton>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
+
+      </div>
+      <div>
+        <WordsStagger>Proyectos</WordsStagger>
       </div>
     </div>
   )
+
 }
 
 export default App

@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "motion/react"
-import type React from "react"
+import React from "react"
 
 export interface BlurRevealProps {
-  children: string
+  children: React.ReactNode
   className?: string
   delay?: number
   speedReveal?: number
@@ -15,6 +15,103 @@ export interface BlurRevealProps {
   inView?: boolean
   once?: boolean
   letterSpacing?: string | number
+}
+
+function extractTextContent(children: React.ReactNode): string {
+  if (
+    typeof children === "string" ||
+    typeof children === "number" ||
+    typeof children === "bigint"
+  ) {
+    return String(children)
+  }
+
+  if (Array.isArray(children)) {
+    return children.map(extractTextContent).join("")
+  }
+
+  if (React.isValidElement<{ children?: React.ReactNode }>(children)) {
+    return extractTextContent(children.props.children)
+  }
+
+  return ""
+}
+
+function renderAnimatedText(
+  children: React.ReactNode,
+  itemVariants: {
+    hidden: { opacity: number; filter: string; y: number }
+    visible: {
+      opacity: number
+      filter: string
+      y: number
+      transition: { duration: number }
+    }
+    exit: { opacity: number; filter: string; y: number }
+  },
+  letterSpacing: BlurRevealProps["letterSpacing"],
+  keyPrefix = "node"
+): React.ReactNode {
+  if (
+    typeof children === "string" ||
+    typeof children === "number" ||
+    typeof children === "bigint"
+  ) {
+    return String(children)
+      .split(" ")
+      .map((word, wordIndex, wordsArray) => (
+        <span
+          key={`${keyPrefix}-word-${wordIndex}`}
+          className="inline-block whitespace-nowrap"
+          aria-hidden="true"
+        >
+          {word.split("").map((char, charIndex) => (
+            <motion.span
+              key={`${keyPrefix}-char-${wordIndex}-${charIndex}`}
+              variants={itemVariants}
+              className="inline-block"
+              style={letterSpacing ? { marginRight: letterSpacing } : undefined}
+            >
+              {char}
+            </motion.span>
+          ))}
+          {wordIndex < wordsArray.length - 1 && (
+            <motion.span
+              key={`${keyPrefix}-space-${wordIndex}`}
+              variants={itemVariants}
+              className="inline-block"
+            >
+              &nbsp;
+            </motion.span>
+          )}
+        </span>
+      ))
+  }
+
+  if (Array.isArray(children)) {
+    return children.map((child, index) =>
+      renderAnimatedText(
+        child,
+        itemVariants,
+        letterSpacing,
+        `${keyPrefix}-${index}`
+      )
+    )
+  }
+
+  if (React.isValidElement<{ children?: React.ReactNode }>(children)) {
+    return React.cloneElement(children, {
+      ...children.props,
+      children: renderAnimatedText(
+        children.props.children,
+        itemVariants,
+        letterSpacing,
+        `${keyPrefix}-child`
+      ),
+    })
+  }
+
+  return children
 }
 
 export function BlurReveal({
@@ -82,31 +179,8 @@ export function BlurReveal({
           onAnimationStart={onAnimationStart}
           style={style}
         >
-          <span className="sr-only">{children}</span>
-          {children &&
-            children.split(" ").map((word, wordIndex, wordsArray) => (
-              <span key={`word-${wordIndex}`} className="inline-block whitespace-nowrap" aria-hidden="true">
-                {word.split("").map((char, charIndex) => (
-                  <motion.span
-                    key={`char-${wordIndex}-${charIndex}`}
-                    variants={itemVariants}
-                    className="inline-block"
-                    style={letterSpacing ? { marginRight: letterSpacing } : undefined}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-                {wordIndex < wordsArray.length - 1 && (
-                  <motion.span
-                    key={`space-${wordIndex}`}
-                    variants={itemVariants}
-                    className="inline-block"
-                  >
-                    &nbsp;
-                  </motion.span>
-                )}
-              </span>
-            ))}
+          <span className="sr-only">{extractTextContent(children)}</span>
+          {renderAnimatedText(children, itemVariants, letterSpacing)}
         </MotionTag>
       )}
     </AnimatePresence>

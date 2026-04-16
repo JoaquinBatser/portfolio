@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Budget",
+    "year": 2026,
+    "description": "Private finance tracker",
+    "stack": [
+      "SwiftUi",
+      "SwiftData"
+    ],
+    "links": {
+      "live": "",
+      "github": ""
+    }
+  },
+  {
+    "name": "AI Portfolio",
+    "year": 2025,
+    "description": "AI and data science portfolio with write-ups and experiments.",
+    "stack": [
+      "Next.js",
+      "TypeScript",
+      "Fumadocs",
+      "Tailwind CSS"
+    ],
+    "links": {
+      "live": "https://portfolio-ia-ten.vercel.app/",
+      "github": "https://github.com/JoaquinBatser/portfolio-ia"
+    }
+  },
+  {
+    "name": "Ev Routing",
+    "year": 2025,
+    "description": "EV routing study comparing A* and Greedy on Montevideo roads.",
+    "stack": [
+      "Python",
+      "OpenStreetMap",
+      "JSON"
+    ],
+    "links": {
+      "live": "",
+      "github": "https://github.com/JoaquinBatser/ev-routing"
+    }
+  },
+  {
+    "name": "PadPoint Admins",
+    "year": 2026,
+    "description": "Padel club admin platform for bookings and daily operations.",
+    "stack": [
+      "Next.js",
+      "Convex"
+    ],
+    "links": {
+      "live": "",
+      "github": ""
+    }
+  },
+  {
+    "name": "PadPoint",
+    "year": 2026,
+    "description": "Padel player app for matches, clubs, and community.",
+    "stack": [
+      "Expo",
+      "Convex"
+    ],
+    "links": {
+      "live": "",
+      "github": ""
+    }
+  }
+]

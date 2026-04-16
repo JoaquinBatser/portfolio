@@ -1,5 +1,6 @@
 [
   {
+    "_id": 0,
     "name": "Budget",
     "year": 2026,
     "description": "Private finance tracker",
@@ -13,6 +14,7 @@
     }
   },
   {
+    "_id": 0,
     "name": "AI Portfolio",
     "year": 2025,
     "description": "AI and data science portfolio with write-ups and experiments.",
@@ -28,6 +30,7 @@
     }
   },
   {
+    "_id": 0,
     "name": "Ev Routing",
     "year": 2025,
     "description": "EV routing study comparing A* and Greedy on Montevideo roads.",
@@ -42,6 +45,7 @@
     }
   },
   {
+    "_id": 0,
     "name": "PadPoint Admins",
     "year": 2026,
     "description": "Padel club admin platform for bookings and daily operations.",
@@ -55,6 +59,7 @@
     }
   },
   {
+    "_id": 0,
     "name": "PadPoint",
     "year": 2026,
     "description": "Padel player app for matches, clubs, and community.",

@@ -3,70 +3,52 @@
     "_id": 0,
     "name": "Budget",
     "year": 2026,
-    "description": "Private finance tracker",
-    "stack": [
-      "SwiftUi",
-      "SwiftData"
-    ],
+    "description": "Private finance tracker.",
+    "stack": ["SwiftUI", "SwiftData"],
     "links": {
       "live": "",
       "github": ""
     }
   },
   {
-    "_id": 0,
-    "name": "AI Portfolio",
+    "_id": 1,
+    "name": "Engineering Data Notes",
     "year": 2025,
-    "description": "AI and data science portfolio with write-ups and experiments.",
-    "stack": [
-      "Next.js",
-      "TypeScript",
-      "Fumadocs",
-      "Tailwind CSS"
-    ],
+    "description": "Data engineering notes and applied practices.",
+    "stack": ["Astro", "TypeScript", "Tailwind CSS", "Markdown"],
     "links": {
-      "live": "https://portfolio-ia-ten.vercel.app/",
-      "github": "https://github.com/JoaquinBatser/portfolio-ia"
+      "live": "",
+      "github": "https://github.com/JoaquinBatser/apuntes-ingenieria-datos.git"
     }
   },
   {
-    "_id": 0,
+    "_id": 2,
     "name": "Ev Routing",
     "year": 2025,
     "description": "EV routing study comparing A* and Greedy on Montevideo roads.",
-    "stack": [
-      "Python",
-      "OpenStreetMap",
-      "JSON"
-    ],
+    "stack": ["Python", "OpenStreetMap", "JSON"],
     "links": {
       "live": "",
       "github": "https://github.com/JoaquinBatser/ev-routing"
     }
   },
   {
-    "_id": 0,
+    "_id": 3,
     "name": "PadPoint Admins",
     "year": 2026,
     "description": "Padel club admin platform for bookings and daily operations.",
-    "stack": [
-      "Next.js",
-      "Convex"
-    ],
+    "stack": ["Next.js", "Convex"],
     "links": {
       "live": "",
       "github": ""
     }
   },
   {
-    "_id": 0,
+    "_id": 4,
     "name": "PadPoint",
     "year": 2026,
     "description": "Padel player app for matches, clubs, and community.",
-    "stack": [
-      "Expo",
-      "Convex"
-    ],
+    "stack": ["Expo", "Convex"],
     "links": {
       "live": "",
       "github": ""

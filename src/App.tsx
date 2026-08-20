@@ -14,6 +14,7 @@ import {
 } from "./components/ui/item"
 import { useRef, useState, type ComponentType } from "react"
 import { useSmoothCorners } from "@lisse/react"
+import { CustomCursor } from "./components/custom-cursor"
 import { CopyButton } from "./components/copy-button"
 import IconSuitcase3FillDuo18 from "./components/icon-suitcase"
 import IconBookBookmarkFillDuo18 from "./components/icon-book"
@@ -64,7 +65,9 @@ export function App() {
   const projectRevealStep = 0.08
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden text-base md:grid md:grid-cols-2">
+    <>
+      <CustomCursor />
+      <div className="flex h-dvh flex-col overflow-hidden text-base md:grid md:grid-cols-2">
       <div className="flex min-h-0 shrink-0 flex-col p-8 md:h-full md:grid md:place-items-center">
         <div className="grid max-w-md text-muted-foreground">
           <BlurRevealElement className="mb-4 flex items-center justify-between gap-2 leading-none font-medium">
@@ -193,6 +196,7 @@ export function App() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

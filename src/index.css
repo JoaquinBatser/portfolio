@@ -34,6 +34,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
 @utility scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;

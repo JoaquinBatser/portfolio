@@ -107,7 +107,7 @@ export function App() {
           </div>
         </div>
       </div>
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-8">
+      <div className="flex min-h-0 flex-1 flex-col items-center p-8">
         <div className="flex h-full w-full max-w-md flex-col gap-4">
           <div className="flex shrink-0 items-center gap-4 text-sm">
             {Object.keys(grouped).map((category) => {
@@ -130,7 +130,7 @@ export function App() {
               )
             })}
           </div>
-          <div className="relative grid min-h-0 flex-1 gap-8 overflow-y-auto scrollbar-hide">
+          <div className="relative my-auto grid min-h-0 max-h-full gap-8 overflow-y-auto scrollbar-hide">
             <div className="pointer-events-none sticky top-0 z-10 h-8 shrink-0 bg-gradient-to-b from-background to-transparent" />
             <ItemGroup>
               {grouped[activeCategory]?.map((project, index) => {

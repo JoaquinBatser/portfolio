@@ -4,38 +4,48 @@
     "name": "Ev Routing",
     "year": 2025,
     "description": "EV routing study comparing A* and Greedy on Montevideo roads.",
-    "stack": ["Python", "OpenStreetMap", "JSON"],
+    "stack": [
+      "Python",
+      "OpenStreetMap",
+      "JSON"
+    ],
     "links": {
       "live": "",
       "github": "https://github.com/JoaquinBatser/ev-routing"
     },
-    "category":"studies",
-    "image": "https://picsum.photos/seed/ev-routing/96/96"
+    "category": "studies",
+    "image": "/images/ev-routing.webp"
   },
   {
     "_id": 4,
     "name": "PadPoint",
     "year": 2026,
     "description": "Mobile app for padel players and admin dashboard for clubs",
-    "stack": ["Expo", "Convex"],
+    "stack": [
+      "Expo",
+      "Convex"
+    ],
     "links": {
       "live": "",
       "github": ""
     },
-    "category":"work",
-    "image": "https://picsum.photos/seed/padpoint/96/96"
+    "category": "work",
+    "image": "/images/padpoint.webp"
   },
   {
     "_id": 4,
     "name": "Chajá",
     "year": 2026,
     "description": "E-commerce and admin dashboard for uruguayan dessert brand",
-    "stack": ["Expo", "Convex"],
+    "stack": [
+      "Expo",
+      "Convex"
+    ],
     "links": {
       "live": "",
       "github": ""
     },
-    "category":"work",
-    "image": "https://picsum.photos/seed/chaja/96/96"
+    "category": "work",
+    "image": "/images/chaja.webp"
   }
 ]

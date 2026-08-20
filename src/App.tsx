@@ -1,5 +1,6 @@
 import { RichButton } from "./components/rich-button"
 import IconPaperPlane from "./components/icon-paper-plane"
+import { CopyButton } from "./components/copy-button"
 import { BlurReveal } from "./components/blur-reveal"
 import { BlurRevealElement } from "./components/blur-reveal-element"
 import ShimmerText from "./components/shimmer-text"
@@ -13,8 +14,9 @@ import {
   ItemTitle,
 } from "./components/ui/item"
 import { useState, type ComponentType } from "react"
+import { useRef } from "react"
+import { useSmoothCorners } from "@lisse/react"
 import { CustomCursor } from "./components/custom-cursor"
-import { CopyButton } from "./components/copy-button"
 import IconSuitcase3FillDuo18 from "./components/icon-suitcase"
 import IconBookBookmarkFillDuo18 from "./components/icon-book"
 import { GithubDark } from "./components/ui/svgs/githubDark"
@@ -30,6 +32,25 @@ type Project = {
     github?: string
   },
   category: string,
+  image?: string
+}
+
+function ProjectImage({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useSmoothCorners(ref, { radius: 12, smoothing: 0.65 })
+  return (
+    <div ref={ref} className="w-full">
+      <img
+        src={src}
+        alt={alt}
+        width={896}
+        height={597}
+        loading="lazy"
+        decoding="async"
+        className="aspect-3/2 w-full object-cover"
+      />
+    </div>
+  )
 }
 
 const CATEGORY_ICONS: Record<string, ComponentType<{ size?: string }>> = {
@@ -62,7 +83,7 @@ export function App() {
             <div className="flex gap-2">
               {" "}
               <span className="font-bold text-foreground">Joaquin Batista</span>{" "}
-              <ShimmerText variant="red"> currently employed </ShimmerText>
+              <ShimmerText variant="red"> working </ShimmerText>
               {/*<ShimmerText variant="green"> available for work </ShimmerText>*/}
             </div>
           </BlurRevealElement>
@@ -130,7 +151,7 @@ export function App() {
               )
             })}
           </div>
-          <div className="relative my-auto grid min-h-0 max-h-full gap-8 overflow-y-auto scrollbar-hide">
+          <div className="relative my-auto grid min-h-0 max-h-full gap-8 overflow-y-auto overflow-x-hidden scrollbar-hide">
             <div className="pointer-events-none sticky top-0 z-10 h-8 shrink-0 bg-gradient-to-b from-background to-transparent" />
             <ItemGroup>
               {grouped[activeCategory]?.map((project, index) => {
@@ -169,6 +190,11 @@ export function App() {
                           <ItemContent>
                             <ItemDescription className="text-base">{project.year}</ItemDescription>
                           </ItemContent>
+                          {project.image ? (
+                            <div className="mt-2 w-full">
+                              <ProjectImage src={project.image} alt={project.name} />
+                            </div>
+                          ) : null}
                         </Item>
                       </BlurRevealElement>
                     )

@@ -1,27 +1,5 @@
 [
   {
-    "_id": 0,
-    "name": "Budget",
-    "year": 2026,
-    "description": "Private finance tracker.",
-    "stack": ["SwiftUI", "SwiftData"],
-    "links": {
-      "live": "",
-      "github": ""
-    }
-  },
-  {
-    "_id": 1,
-    "name": "Engineering Data Notes",
-    "year": 2025,
-    "description": "Data engineering notes and applied practices.",
-    "stack": ["Astro", "TypeScript", "Tailwind CSS", "Markdown"],
-    "links": {
-      "live": "",
-      "github": "https://github.com/JoaquinBatser/apuntes-ingenieria-datos.git"
-    }
-  },
-  {
     "_id": 2,
     "name": "Ev Routing",
     "year": 2025,
@@ -30,28 +8,31 @@
     "links": {
       "live": "",
       "github": "https://github.com/JoaquinBatser/ev-routing"
-    }
-  },
-  {
-    "_id": 3,
-    "name": "PadPoint Admins",
-    "year": 2026,
-    "description": "Padel club admin platform for bookings and daily operations.",
-    "stack": ["Next.js", "Convex"],
-    "links": {
-      "live": "",
-      "github": ""
-    }
+    },
+    "category":"studies"
   },
   {
     "_id": 4,
     "name": "PadPoint",
     "year": 2026,
-    "description": "Padel player app for matches, clubs, and community.",
+    "description": "Mobile app for padel players and admin dashboard for clubs",
     "stack": ["Expo", "Convex"],
     "links": {
       "live": "",
       "github": ""
-    }
+    },
+    "category":"work"
+  },
+  {
+    "_id": 4,
+    "name": "Chajá",
+    "year": 2026,
+    "description": "E-commerce and admin dashboard for uruguayan dessert brand",
+    "stack": ["Expo", "Convex"],
+    "links": {
+      "live": "",
+      "github": ""
+    },
+    "category":"work"
   }
 ]

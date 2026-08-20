@@ -1,0 +1,34 @@
+
+{
+  "_id": 1,
+  "name": "Engineering Data Notes",
+  "year": 2025,
+  "description": "Data engineering notes and applied practices.",
+  "stack": ["Astro", "TypeScript", "Tailwind CSS", "Markdown"],
+  "links": {
+    "live": "",
+    "github": "https://github.com/JoaquinBatser/apuntes-ingenieria-datos.git"
+  }
+},
+{
+  "_id": 0,
+  "name": "Budget",
+  "year": 2026,
+  "description": "Private finance tracker.",
+  "stack": ["SwiftUI", "SwiftData"],
+  "links": {
+    "live": "",
+    "github": ""
+  }
+},
+{
+  "_id": 3,
+  "name": "PadPoint Admins",
+  "year": 2026,
+  "description": "Padel club admin platform for bookings and daily operations.",
+  "stack": ["Next.js", "Convex"],
+  "links": {
+    "live": "",
+    "github": ""
+  }
+},

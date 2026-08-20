@@ -13,6 +13,9 @@ import {
   ItemTitle,
 } from "./components/ui/item"
 import { CopyButton } from "./components/copy-button"
+import { GithubDark } from "./components/ui/svgs/githubDark"
+import { GithubLight } from "./components/ui/svgs/githubLight"
+import { GithubWordmarkDark } from "./components/ui/svgs/githubWordmarkDark"
 
 type Project = {
   name: string
@@ -22,7 +25,8 @@ type Project = {
   links: {
     live?: string
     github?: string
-  }
+  },
+  category: string
 }
 
 export function App() {
@@ -38,28 +42,31 @@ export function App() {
           <BlurRevealElement className="mb-4 flex items-center justify-between gap-2 leading-none font-medium">
             <div className="flex gap-2">
               {" "}
-              <span className="font-bold text-foreground">Joaquin</span>{" "}
-              <ShimmerText variant="green"> available for work </ShimmerText>
+              <span className="font-bold text-foreground">Joaquin Batista</span>{" "}
+              <ShimmerText variant="red"> currently employed </ShimmerText>
+              {/*<ShimmerText variant="green"> available for work </ShimmerText>*/}
             </div>
           </BlurRevealElement>
           <div>
-            <BlurReveal speedReveal={3}>
+            <BlurReveal speedReveal={3} className="text-pretty">
               I&apos;m a 21 y/o{" "}
-              <span className="font-bold text-foreground">engineer</span> with
-              data science and AI background. Currently studying at UCU.
-              Currently working in a{" "}
+              <span className="font-bold text-foreground">student</span> from Uruguay with
+              data science, web and mobile development background. Currently at UCU.
+              Mainly working in a{" "}
               <span className="font-bold text-foreground">full suite</span> for
-              Padel Clubs and players in Uruguay.
+              padel clubs and players in Uruguay, and an <span className="font-bold text-foreground">e-commerce</span> for Chajá.
             </BlurReveal>
           </div>
 
-          <div className="flex gap-4">
-            <BlurRevealElement as="div" className="mt-4 inline-flex">
-              <RichButton color="default" size="sm">
-                <IconPaperPlane size="12px" />
-                Contact me
-              </RichButton>
-            </BlurRevealElement>
+          <div className="flex items-center gap-4">
+            <a href="mailto:joaquindbatista@gmail.com">
+              <BlurRevealElement as="div" className="mt-4 inline-flex">
+                <RichButton color="default" size="sm">
+                  <IconPaperPlane size="12px" />
+                  Contact me
+                </RichButton>
+              </BlurRevealElement>
+            </a>
             <a href="/JoaquinBatista_CV.md" download="JoaquinBatista_CV.md">
               <BlurRevealElement as="div" className="mt-4 inline-flex">
                 <CopyButton size="sm" value="joaquindbatista@gmail.com">
@@ -67,6 +74,17 @@ export function App() {
                 </CopyButton>
               </BlurRevealElement>
             </a>
+            <BlurRevealElement as="div" className="mt-4 inline-flex">
+              <a
+                href="https://github.com/JoaquinBatser"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block"
+              >
+                <GithubDark className="hidden w-5 opacity-25 transition-opacity duration-300 hover:opacity-90 dark:block" />
+                <GithubLight className="w-5 opacity-25 transition-opacity duration-300 hover:opacity-90 dark:hidden" />
+              </a>
+            </BlurRevealElement>
           </div>
         </div>
       </div>
@@ -98,15 +116,18 @@ export function App() {
                         />
                       ) : null}
                     </ItemTitle>
-                    <ItemDescription className="mb-1 text-sm">
+                    <ItemDescription className="mb-1 text-base mr-8">
                       {project.description}
                     </ItemDescription>
-                    <ItemDescription className="line-clamp-1 text-muted-foreground">
+                    {/*<ItemDescription className="line-clamp-1 text-muted-foreground">
                       {project.stack.join(" · ")}
+                    </ItemDescription>*/}
+                    <ItemDescription className="line-clamp-1 text-muted-foreground">
+                      {project.category}
                     </ItemDescription>
                   </ItemContent>
                   <ItemContent>
-                    <ItemDescription>{project.year}</ItemDescription>
+                    <ItemDescription className="text-base">{project.year}</ItemDescription>
                   </ItemContent>
                 </Item>
               </BlurRevealElement>

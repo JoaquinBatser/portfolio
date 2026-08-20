@@ -19,7 +19,6 @@ import IconSuitcase3FillDuo18 from "./components/icon-suitcase"
 import IconBookBookmarkFillDuo18 from "./components/icon-book"
 import { GithubDark } from "./components/ui/svgs/githubDark"
 import { GithubLight } from "./components/ui/svgs/githubLight"
-import { GithubWordmarkDark } from "./components/ui/svgs/githubWordmarkDark"
 
 type Project = {
   name: string
@@ -36,7 +35,7 @@ type Project = {
 
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null)
-  useSmoothCorners(ref, { radius: 16, smoothing: 0.65 })
+  useSmoothCorners(ref, { radius: 30, smoothing: 0.65 })
   return (
     <div ref={ref} className="w-full">
       <img src={src} alt={alt} loading="lazy" className="aspect-video w-full object-cover" />
@@ -65,8 +64,8 @@ export function App() {
   const projectRevealStep = 0.08
 
   return (
-    <div className="grid h-dvh grid-rows-1 overflow-hidden text-base md:grid-cols-2">
-      <div className="flex h-full min-h-0 items-center justify-center p-8">
+    <div className="flex h-dvh flex-col overflow-hidden text-base md:grid md:grid-cols-2">
+      <div className="flex min-h-0 shrink-0 flex-col p-8 md:h-full md:grid md:place-items-center">
         <div className="grid max-w-md text-muted-foreground">
           <BlurRevealElement className="mb-4 flex items-center justify-between gap-2 leading-none font-medium">
             <div className="flex gap-2">
@@ -117,7 +116,7 @@ export function App() {
           </div>
         </div>
       </div>
-      <div className="flex h-full min-h-0 items-center justify-center p-8">
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-8">
         <div className="flex h-full w-full max-w-md flex-col gap-4">
           <div className="flex shrink-0 items-center gap-4 text-sm">
             {Object.keys(grouped).map((category) => {
@@ -140,7 +139,8 @@ export function App() {
               )
             })}
           </div>
-          <div className="grid min-h-0 flex-1 gap-8 overflow-y-auto scrollbar-hide">
+          <div className="relative grid min-h-0 flex-1 gap-8 overflow-y-auto scrollbar-hide">
+            <div className="pointer-events-none sticky top-0 z-10 h-8 shrink-0 bg-gradient-to-b from-background to-transparent" />
             <ItemGroup>
               {grouped[activeCategory]?.map((project, index) => {
                     const link = project.links.live || project.links.github
@@ -188,6 +188,7 @@ export function App() {
                     )
                   })}
             </ItemGroup>
+            <div className="pointer-events-none sticky bottom-0 z-10 h-8 shrink-0 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
       </div>

@@ -12,7 +12,11 @@ import {
   ItemGroup,
   ItemTitle,
 } from "./components/ui/item"
+import { useRef, useState, type ComponentType } from "react"
+import { useSmoothCorners } from "@lisse/react"
 import { CopyButton } from "./components/copy-button"
+import IconSuitcase3FillDuo18 from "./components/icon-suitcase"
+import IconBookBookmarkFillDuo18 from "./components/icon-book"
 import { GithubDark } from "./components/ui/svgs/githubDark"
 import { GithubLight } from "./components/ui/svgs/githubLight"
 import { GithubWordmarkDark } from "./components/ui/svgs/githubWordmarkDark"
@@ -26,18 +30,43 @@ type Project = {
     live?: string
     github?: string
   },
-  category: string
+  category: string,
+  image?: string
+}
+
+function ProjectImage({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useSmoothCorners(ref, { radius: 16, smoothing: 0.65 })
+  return (
+    <div ref={ref} className="w-full">
+      <img src={src} alt={alt} loading="lazy" className="aspect-video w-full object-cover" />
+    </div>
+  )
+}
+
+const CATEGORY_ICONS: Record<string, ComponentType<{ size?: string }>> = {
+  work: IconSuitcase3FillDuo18,
+  studies: IconBookBookmarkFillDuo18,
+}
+
+function groupByCategory(projects: Project[]) {
+  return projects.reduce<Record<string, Project[]>>((acc, project) => {
+    ;(acc[project.category] ??= []).push(project)
+    return acc
+  }, {})
 }
 
 export function App() {
   const projectList = [...(projects as Project[])].sort(
     (a, b) => b.year - a.year
   )
+  const grouped = groupByCategory(projectList)
+  const [activeCategory, setActiveCategory] = useState("work")
   const projectRevealStep = 0.08
 
   return (
-    <div className="grid min-h-svh text-base md:grid-cols-2">
-      <div className="grid place-items-center p-8">
+    <div className="grid h-dvh grid-rows-1 overflow-hidden text-base md:grid-cols-2">
+      <div className="flex h-full min-h-0 items-center justify-center p-8">
         <div className="grid max-w-md text-muted-foreground">
           <BlurRevealElement className="mb-4 flex items-center justify-between gap-2 leading-none font-medium">
             <div className="flex gap-2">
@@ -88,52 +117,79 @@ export function App() {
           </div>
         </div>
       </div>
-      <div className="grid place-items-center p-8">
-        <ItemGroup className="max-w-md">
-          {projectList.map((project, index) => {
-            const link = project.links.live || project.links.github
-            return (
-              <BlurRevealElement
-                key={project.name}
-                delay={index * projectRevealStep}
-                speedReveal={0.5}
-              >
-                <Item
-                  role="listitem"
-                  render={
-                    link ? (
-                      <a href={link} target="_blank" rel="noreferrer" />
-                    ) : undefined
+      <div className="flex h-full min-h-0 items-center justify-center p-8">
+        <div className="flex h-full w-full max-w-md flex-col gap-4">
+          <div className="flex shrink-0 items-center gap-4 text-sm">
+            {Object.keys(grouped).map((category) => {
+              const Icon = CATEGORY_ICONS[category]
+              const isActive = activeCategory === category
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={
+                    isActive
+                      ? "flex items-center gap-2 font-medium text-foreground"
+                      : "flex items-center gap-2 text-muted-foreground transition-colors duration-200 hover:text-foreground"
                   }
                 >
-                  <ItemContent>
-                    <ItemTitle className="text-base">
-                      {project.name}
-                      {link ? (
-                        <IconWindowExpandBottomRightFill18
-                          size="16"
-                          className="text-muted-foreground opacity-0 transition-opacity duration-300 group-hover/item:opacity-100"
-                        />
-                      ) : null}
-                    </ItemTitle>
-                    <ItemDescription className="mb-1 text-base mr-8">
-                      {project.description}
-                    </ItemDescription>
-                    {/*<ItemDescription className="line-clamp-1 text-muted-foreground">
-                      {project.stack.join(" · ")}
-                    </ItemDescription>*/}
-                    <ItemDescription className="line-clamp-1 text-muted-foreground">
-                      {project.category}
-                    </ItemDescription>
-                  </ItemContent>
-                  <ItemContent>
-                    <ItemDescription className="text-base">{project.year}</ItemDescription>
-                  </ItemContent>
-                </Item>
-              </BlurRevealElement>
-            )
-          })}
-        </ItemGroup>
+                  {Icon ? <Icon size="16px" /> : null}
+                  {category}
+                </button>
+              )
+            })}
+          </div>
+          <div className="grid min-h-0 flex-1 gap-8 overflow-y-auto scrollbar-hide">
+            <ItemGroup>
+              {grouped[activeCategory]?.map((project, index) => {
+                    const link = project.links.live || project.links.github
+                    return (
+                      <BlurRevealElement
+                        key={project.name}
+                        delay={index * projectRevealStep}
+                        speedReveal={0.5}
+                      >
+                        <Item
+                          role="listitem"
+                          render={
+                            link ? (
+                              <a href={link} target="_blank" rel="noreferrer" />
+                            ) : undefined
+                          }
+                        >
+                          <ItemContent>
+                            <ItemTitle className="text-base">
+                              {project.name}
+                              {link ? (
+                                <IconWindowExpandBottomRightFill18
+                                  size="16"
+                                  className="text-muted-foreground opacity-0 transition-opacity duration-300 group-hover/item:opacity-100"
+                                />
+                              ) : null}
+                            </ItemTitle>
+                            <ItemDescription className="mb-1 text-base mr-8">
+                              {project.description}
+                            </ItemDescription>
+                            <ItemDescription className="line-clamp-1 text-muted-foreground">
+                              {project.stack.join(" · ")}
+                            </ItemDescription>
+                          </ItemContent>
+                          <ItemContent>
+                            <ItemDescription className="text-base">{project.year}</ItemDescription>
+                          </ItemContent>
+                          {project.image ? (
+                            <div className="mt-2 w-full">
+                              <ProjectImage src={project.image} alt={project.name} />
+                            </div>
+                          ) : null}
+                        </Item>
+                      </BlurRevealElement>
+                    )
+                  })}
+            </ItemGroup>
+          </div>
+        </div>
       </div>
     </div>
   )

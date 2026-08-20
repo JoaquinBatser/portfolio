@@ -9,7 +9,8 @@
       "live": "",
       "github": "https://github.com/JoaquinBatser/ev-routing"
     },
-    "category":"studies"
+    "category":"studies",
+    "image": "https://picsum.photos/seed/ev-routing/96/96"
   },
   {
     "_id": 4,
@@ -21,7 +22,8 @@
       "live": "",
       "github": ""
     },
-    "category":"work"
+    "category":"work",
+    "image": "https://picsum.photos/seed/padpoint/96/96"
   },
   {
     "_id": 4,
@@ -33,6 +35,7 @@
       "live": "",
       "github": ""
     },
-    "category":"work"
+    "category":"work",
+    "image": "https://picsum.photos/seed/chaja/96/96"
   }
 ]

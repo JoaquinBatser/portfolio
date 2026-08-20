@@ -47,5 +47,22 @@
     },
     "category": "work",
     "image": "/images/chaja.webp"
+  },
+  {
+    "_id": 5,
+    "name": "Ingeniería de Datos",
+    "year": 2026,
+    "description": "Data engineering notes and interactive study portfolio.",
+    "stack": [
+      "Astro",
+      "Markdown",
+      "Vercel"
+    ],
+    "links": {
+      "live": "https://ingenieria-de-datos.vercel.app/",
+      "github": ""
+    },
+    "category": "studies",
+    "image": "/images/ingenieria-de-datos.webp"
   }
 ]

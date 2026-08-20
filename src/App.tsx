@@ -12,8 +12,7 @@ import {
   ItemGroup,
   ItemTitle,
 } from "./components/ui/item"
-import { useRef, useState, type ComponentType } from "react"
-import { useSmoothCorners } from "@lisse/react"
+import { useState, type ComponentType } from "react"
 import { CustomCursor } from "./components/custom-cursor"
 import { CopyButton } from "./components/copy-button"
 import IconSuitcase3FillDuo18 from "./components/icon-suitcase"
@@ -31,17 +30,6 @@ type Project = {
     github?: string
   },
   category: string,
-  image?: string
-}
-
-function ProjectImage({ src, alt }: { src: string; alt: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  useSmoothCorners(ref, { radius: 30, smoothing: 0.65 })
-  return (
-    <div ref={ref} className="w-full">
-      <img src={src} alt={alt} loading="lazy" className="aspect-video w-full object-cover" />
-    </div>
-  )
 }
 
 const CATEGORY_ICONS: Record<string, ComponentType<{ size?: string }>> = {
@@ -174,18 +162,13 @@ export function App() {
                             <ItemDescription className="mb-1 text-base mr-8">
                               {project.description}
                             </ItemDescription>
-                            <ItemDescription className="line-clamp-1 text-muted-foreground">
+                            {/*<ItemDescription className="line-clamp-1 text-muted-foreground">
                               {project.stack.join(" · ")}
-                            </ItemDescription>
+                            </ItemDescription>*/}
                           </ItemContent>
                           <ItemContent>
                             <ItemDescription className="text-base">{project.year}</ItemDescription>
                           </ItemContent>
-                          {project.image ? (
-                            <div className="mt-2 w-full">
-                              <ProjectImage src={project.image} alt={project.name} />
-                            </div>
-                          ) : null}
                         </Item>
                       </BlurRevealElement>
                     )
